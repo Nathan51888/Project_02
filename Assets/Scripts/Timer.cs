@@ -10,6 +10,11 @@ public class Timer : MonoBehaviour
     private Text timerText;
     private bool isTimerActive = true;
 
+    private void Awake()
+    {
+        SetTimer(GameManager.Instance.currentTime);
+    }
+
     private void Start()
     {
         timerText = GameObject.Find("TimerText").GetComponent<Text>();
@@ -43,5 +48,10 @@ public class Timer : MonoBehaviour
     public void SetTimer(float time)
     {
         _currentTime = time;
+    }
+    
+    public float GetTime()
+    {
+        return _currentTime;
     }
 }

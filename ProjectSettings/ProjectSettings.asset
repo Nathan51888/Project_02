@@ -622,9 +622,9 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
-    Analytics: 1
+    Analytics: 0
     Build: 0
-    Collab: 1
+    Collab: 0
     Game Performance: 0
     Purchasing: 0
     UDP: 0
@@ -642,11 +642,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: ac7320e2-4815-4825-8e5c-b978c8c5d76c
+  cloudProjectId: 
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Prototype01
-  organizationId: nathan518
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   virtualTexturingSupportEnabled: 0

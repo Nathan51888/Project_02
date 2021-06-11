@@ -9820,7 +9820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc7b6a6d29deba2a80c4480cc70ba70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayDistance: 2
+  rayDistance: 1.3
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -9842,6 +9842,8 @@ MonoBehaviour:
   lowJumpGravity: 15
   fallGravity: 6
   isFacingRight: 1
+  hangTime: 0.2
+  jumpBuffer: 0.15
   runParticle: {fileID: 1024212276}
   jumpParticle: {fileID: 1149988543}
 --- !u!114 &4557462084553735650

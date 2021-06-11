@@ -11,6 +11,11 @@ public class PlayerController : MonoBehaviour
     public float lowJumpGravity;
     public float fallGravity;
     public bool isFacingRight;
+    public float hangTime;
+    public float jumpBuffer;
+    private float _hangTimeCounter;
+    private float _jumpBufferCounter;
+    private bool CanJump => _jumpBufferCounter > 0 && _hangTimeCounter > 0;
 
     private Rigidbody2D _rb;
     private PlayerGroundDetection _groundDetection;
@@ -24,22 +29,36 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        runParticle.Play();
+
         if (Input.GetButtonDown("Respawn"))
         {
             GameManager.Instance.Respawn();
         }
-        runParticle.Play();
 
-        if (!_groundDetection.IsGrounded())
+        if (_groundDetection.IsGrounded())
         {
+            runParticle.Play();
+            _hangTimeCounter = hangTime;
+        }
+        else
+        {
+            _hangTimeCounter -= Time.deltaTime;
             runParticle.Stop();
-            return;
+        }
+
+        if (Input.GetButtonDown("Jump") && _rb.velocity.y <= 0)
+        {
+            _jumpBufferCounter = jumpBuffer;
+        }
+        else
+        {
+            _jumpBufferCounter -= Time.deltaTime;
         }
         
-        if (Input.GetButtonDown("Jump"))
+        if (CanJump)
         {
-            jumpParticle.Play();
-            _rb.velocity = Vector2.up * jumpHeight;
+            Jump();
         }
     }
 
@@ -55,6 +74,14 @@ public class PlayerController : MonoBehaviour
             _rb.gravityScale = lowJumpGravity;
         else
             _rb.gravityScale = jumpGravity;
+    }
+
+    private void Jump()
+    {
+        _hangTimeCounter = 0;
+        _jumpBufferCounter = 0;
+        jumpParticle.Play();
+        _rb.velocity = Vector2.up * jumpHeight;
     }
 
     private void Flip(float horizontal)

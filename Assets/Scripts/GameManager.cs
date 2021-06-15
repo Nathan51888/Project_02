@@ -17,10 +17,10 @@ public class GameManager : GenericSingleton<GameManager>
 
     public int totalLevelCount;
     public int currentLevel;
-    public float currentTime;
     public int deathCount;
     private Action _onLoaderCallback;
     private AsyncOperation _loadingAsyncOperation;
+    private Timer _timer;
 
     public void StartGame()
     {
@@ -33,9 +33,9 @@ public class GameManager : GenericSingleton<GameManager>
     public void Respawn()
     {
         deathCount++;
+        Timer.Instance.StopTimer();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
     private IEnumerator LoadSceneAsync(GameScenes scenes)
     {
         yield return null;
@@ -72,7 +72,6 @@ public class GameManager : GenericSingleton<GameManager>
             {
                 case GameScenes.Menu:
                     currentLevel = 0;
-                    currentTime = 0;
                     StartCoroutine(LoadSceneAsync(GameScenes.Menu));
                     return;
                 
@@ -89,7 +88,6 @@ public class GameManager : GenericSingleton<GameManager>
                 
                 case GameScenes.Start:
                     currentLevel = 1;
-                    currentTime = 0;
                     StartCoroutine(LoadSceneAsync(GameScenes.Level, currentLevel));
                     return;
             }

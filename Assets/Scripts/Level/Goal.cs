@@ -9,8 +9,8 @@ public class Goal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Timer.Instance.StopTimer();
             GameManager.Instance.LoadScene(GameManager.GameScenes.Level);
-            GameManager.Instance.currentTime = FindObjectOfType<Timer>().GetTime();
         }
     }
 }

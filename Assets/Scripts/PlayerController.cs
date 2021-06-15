@@ -21,10 +21,11 @@ public class PlayerController : MonoBehaviour
     private PlayerGroundDetection _groundDetection;
     public ParticleSystem runParticle;
     public ParticleSystem jumpParticle;
-    private void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _groundDetection = GetComponent<PlayerGroundDetection>();
+        Timer.Instance.StartTimer();
     }
 
     private void Update()

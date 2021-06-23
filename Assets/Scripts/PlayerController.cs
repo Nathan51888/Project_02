@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _groundDetection = GetComponent<PlayerGroundDetection>();
+        if (Timer.Instance == null)
+            return;
         Timer.Instance.StartTimer();
     }
 

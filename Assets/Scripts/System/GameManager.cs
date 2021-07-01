@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -34,6 +35,7 @@ public class GameManager : GenericSingleton<GameManager>
     {
         deathCount++;
         Timer.Instance.StopTimer();
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     private IEnumerator LoadSceneAsync(GameScenes scenes)

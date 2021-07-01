@@ -9680,10 +9680,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4350261121056638344}
   - component: {fileID: 4350261121056638343}
+  - component: {fileID: 3746960491342424330}
   - component: {fileID: 4350261121056638341}
   - component: {fileID: 6689530355219828989}
-  - component: {fileID: 4350261121056638346}
-  - component: {fileID: 4350261121056638342}
+  - component: {fileID: 5517940859272088837}
   - component: {fileID: 4557462084553735650}
   - component: {fileID: 6710431789224880216}
   m_Layer: 0
@@ -9761,6 +9761,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3746960491342424330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350261121056638340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3abf9e5389a717f44bfc2e659d4d5f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &4350261121056638341
 Rigidbody2D:
   serializedVersion: 4
@@ -9775,7 +9787,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.5
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: e47762c3ae84385b681d8e9a92205d33, type: 2}
   m_Interpolate: 1
@@ -9808,7 +9820,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.86480725, y: 1.6031733}
   m_EdgeRadius: 0
---- !u!114 &4350261121056638346
+--- !u!114 &5517940859272088837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9817,23 +9829,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4350261121056638340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cc7b6a6d29deba2a80c4480cc70ba70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rayDistance: 1.3
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
---- !u!114 &4350261121056638342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4350261121056638340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f9d8ad7174c1e49b042712b98c1338, type: 3}
+  m_Script: {fileID: 11500000, guid: 7891bbaa2f31ade62bce70e27b6aa205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 14
@@ -9844,8 +9840,13 @@ MonoBehaviour:
   isFacingRight: 1
   hangTime: 0.2
   jumpBuffer: 0.15
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 8
   runParticle: {fileID: 1024212276}
   jumpParticle: {fileID: 1149988543}
+  hangTimeCounter: 0
+  jumpBufferCounter: 0
 --- !u!114 &4557462084553735650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9871,7 +9872,7 @@ MonoBehaviour:
   - {x: 0.4, y: -1, z: 0}
   m_ShapePathHash: -260079581
   m_Mesh: {fileID: 0}
-  m_InstanceId: 63034
+  m_InstanceId: 34664
 --- !u!114 &6710431789224880216
 MonoBehaviour:
   m_ObjectHideFlags: 0

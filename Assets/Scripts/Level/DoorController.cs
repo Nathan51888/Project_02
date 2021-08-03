@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    private SpriteRenderer _sprite;
-    private BoxCollider2D _collider2D;
     [SerializeField] private Switch[] switches;
-    
+    private BoxCollider2D _collider2D;
+    private SpriteRenderer _sprite;
+
     private void Start()
     {
         _sprite = GetComponent<SpriteRenderer>();
@@ -34,7 +31,7 @@ public class DoorController : MonoBehaviour
         _sprite.enabled = false;
         _collider2D.enabled = false;
     }
-    
+
     private void CloseDoor()
     {
         _sprite.enabled = true;

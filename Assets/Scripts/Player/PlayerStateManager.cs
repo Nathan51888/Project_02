@@ -1,5 +1,5 @@
-using UnityEngine;
 using Player.States;
+using UnityEngine;
 
 namespace Player
 {
@@ -109,7 +109,7 @@ namespace Player
             else
                 Rigidbody2D.gravityScale = jumpGravity;
         }
-        
+
         public void TransitionToState(IPlayerState state)
         {
             CurrentState = state;

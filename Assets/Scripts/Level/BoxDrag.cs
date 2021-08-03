@@ -1,19 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BoxDrag : MonoBehaviour
 {
-    private bool isHeldDown = false;
-    private float startPosX;
-    private float startPosY;
-    private bool isTouchingPlayer = false;
-    private bool isTouching;
     public float followSpeed;
+    private bool isHeldDown;
+    private bool isTouching;
+    private bool isTouchingPlayer;
 
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
+    private float startPosX;
+    private float startPosY;
 
     private void Start()
     {
@@ -21,6 +18,7 @@ public class BoxDrag : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
+
     private void Update()
     {
         if (isHeldDown && !isTouching)
@@ -28,7 +26,7 @@ public class BoxDrag : MonoBehaviour
 
         if (isHeldDown && !isTouchingPlayer)
         {
-            Vector3 mousePos = Input.mousePosition;
+            var mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
             rb.velocity = (mousePos - transform.position) * followSpeed;
@@ -41,22 +39,20 @@ public class BoxDrag : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    private void OnCollisionExit2D(Collision2D other)
     {
-        if (!isTouchingPlayer)
+        isTouching = false;
+        if (other.collider.CompareTag("Player"))
         {
-            isHeldDown = true;
+            isTouchingPlayer = false;
+            sprite.color = Color.white;
         }
-    }
-    private void OnMouseUp()
-    {
-        isHeldDown = false;
     }
 
     private void OnCollisionStay2D(Collision2D other)
     {
         isTouching = true;
-        if (other.collider.CompareTag("Player") && 
+        if (other.collider.CompareTag("Player") &&
             other.collider.transform.position.y >= transform.position.y)
         {
             isTouchingPlayer = true;
@@ -64,13 +60,13 @@ public class BoxDrag : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other)
+    private void OnMouseDown()
     {
-        isTouching = false;
-        if (other.collider.CompareTag("Player"))
-        {
-            isTouchingPlayer = false;
-            sprite.color = Color.green;
-        }
+        if (!isTouchingPlayer) isHeldDown = true;
+    }
+
+    private void OnMouseUp()
+    {
+        isHeldDown = false;
     }
 }

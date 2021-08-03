@@ -1,28 +1,22 @@
-using System;
 using UnityEngine;
 
 public class PressSwitch : Switch
 {
     private SpriteRenderer _sprite;
+
     private void Start()
     {
         _sprite = GetComponent<SpriteRenderer>();
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Player") || other.CompareTag("Draggable"))
-        {
-            TurnOn();
-        }
-    }
-
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Draggable"))
-        {
-            TurnOff();
-        }
+        if (other.CompareTag("Player") || other.CompareTag("Draggable")) TurnOff();
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Draggable")) TurnOn();
     }
 
     public override void TurnOn()

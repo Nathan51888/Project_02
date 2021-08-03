@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    [SerializeField]
-    private Transform[] wayPoint;
-    [SerializeField]
-    private float moveSpeed;
-    private int wayPointIndex = 0;
+    [SerializeField] private Transform[] wayPoint;
+
+    [SerializeField] private float moveSpeed;
 
     private SpriteRenderer sprite;
+    private int wayPointIndex;
 
 
     private void Start()
@@ -23,7 +22,7 @@ public class EnemyMove : MonoBehaviour
         Move();
     }
 
-    void Move()
+    private void Move()
     {
         if (transform.position == wayPoint[wayPointIndex].transform.position)
         {

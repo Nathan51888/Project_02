@@ -7,21 +7,21 @@ namespace Player.States
         public void Enter(PlayerStateManager stateManager)
         {
             Debug.Log("RunState");
+            stateManager.RunParticle.Play();
             //Play animation
         }
 
         public void OnDetected(PlayerStateManager stateManager)
         {
-            stateManager.RunParticle.Play();
         }
 
         public void Update(PlayerStateManager stateManager)
         {
-            float playerAxisX = Input.GetAxis("Horizontal");
+            var playerAxisX = Input.GetAxis("Horizontal");
             stateManager.Rigidbody2D.velocity = new Vector2(
-                playerAxisX * stateManager.MoveSpeed, 
+                playerAxisX * stateManager.MoveSpeed,
                 stateManager.Rigidbody2D.velocity.y);
-            
+
             if (stateManager.Rigidbody2D.velocity.y < 0)
                 stateManager.TransitionToState(stateManager.FallState);
             if (Input.GetButtonDown("Jump"))

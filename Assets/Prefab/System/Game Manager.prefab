@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a347ff855956d98ab30d56215abe0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalLevelCount: 8
+  totalLevelCount: 11
   currentLevel: 0
   deathCount: 0
 --- !u!114 &6295231705892054223

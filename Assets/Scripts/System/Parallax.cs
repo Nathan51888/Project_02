@@ -1,14 +1,12 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace DefaultNamespace
 {
     public class Parallax : MonoBehaviour
     {
-        private float length, startPos;
         public GameObject cam;
         public float parallaxEffect;
+        private float length, startPos;
 
         private void Start()
         {
@@ -19,13 +17,13 @@ namespace DefaultNamespace
 
         private void FixedUpdate()
         {
-            float temp = cam.transform.position.x * (1 - parallaxEffect);
-            float distance = cam.transform.position.x * parallaxEffect;
+            var temp = cam.transform.position.x * (1 - parallaxEffect);
+            var distance = cam.transform.position.x * parallaxEffect;
 
-            transform.position = 
+            transform.position =
                 new Vector3(
-                    startPos + distance, 
-                    transform.position.y, 
+                    startPos + distance,
+                    transform.position.y,
                     transform.position.z);
 
             if (temp > startPos + length)

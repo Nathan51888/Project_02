@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class GameManager : GenericSingleton<GameManager>
 {
@@ -13,45 +10,48 @@ public class GameManager : GenericSingleton<GameManager>
         Start,
         Level,
         Loading,
-        Menu,
+        Menu
     }
 
     public int totalLevelCount;
     public int currentLevel;
     public int deathCount;
-    private Action _onLoaderCallback;
     private AsyncOperation _loadingAsyncOperation;
+    private Action _onLoaderCallback;
     private Timer _timer;
 
     public void StartGame()
     {
         LoadScene(GameScenes.Start);
     }
+
     public void ExitGame()
     {
         Application.Quit();
     }
+
     public void Respawn()
     {
         deathCount++;
         Timer.Instance.StopTimer();
-        
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
     private IEnumerator LoadSceneAsync(GameScenes scenes)
     {
         yield return null;
-        
+
         _loadingAsyncOperation = SceneManager.LoadSceneAsync(scenes.ToString());
 
         while (!_loadingAsyncOperation.isDone)
             yield return null;
     }
-    
+
     private IEnumerator LoadSceneAsync(GameScenes scenes, int levelNum)
     {
         yield return null;
-        
+
         _loadingAsyncOperation = SceneManager.LoadSceneAsync(scenes.ToString() + levelNum);
 
         //Until it's done loading, return null
@@ -63,7 +63,7 @@ public class GameManager : GenericSingleton<GameManager>
     {
         return _loadingAsyncOperation?.progress ?? 1f;
     }
-    
+
     public void LoadScene(GameScenes scenes)
     {
         //Execute when being called
@@ -76,7 +76,7 @@ public class GameManager : GenericSingleton<GameManager>
                     currentLevel = 0;
                     StartCoroutine(LoadSceneAsync(GameScenes.Menu));
                     return;
-                
+
                 case GameScenes.Level:
                     currentLevel += 1;
                     if (currentLevel >= totalLevelCount + 1)
@@ -87,7 +87,7 @@ public class GameManager : GenericSingleton<GameManager>
 
                     StartCoroutine(LoadSceneAsync(GameScenes.Level, currentLevel));
                     return;
-                
+
                 case GameScenes.Start:
                     currentLevel = 1;
                     StartCoroutine(LoadSceneAsync(GameScenes.Level, currentLevel));
@@ -108,5 +108,4 @@ public class GameManager : GenericSingleton<GameManager>
             _onLoaderCallback = null;
         }
     }
-
 }

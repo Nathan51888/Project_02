@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Goal : MonoBehaviour
@@ -13,7 +10,7 @@ public class Goal : MonoBehaviour
                 return;
             if (GameManager.Instance == null)
                 return;
-            
+
             Timer.Instance.StopTimer();
             GameManager.Instance.LoadScene(GameManager.GameScenes.Level);
         }

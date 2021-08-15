@@ -14,11 +14,6 @@ namespace Level
             _sprite.color = switchColour;
         }
 
-        private void LateUpdate()
-        {
-            TurnOff();
-        }
-
         public override void TurnOn()
         {
             IsActivated = true;

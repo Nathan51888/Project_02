@@ -16,6 +16,7 @@ namespace Player.States
 
         public void Update(PlayerStateManager stateManager)
         {
+            OnDeath(stateManager);
         }
 
         private IEnumerator OnDeath(PlayerStateManager stateManager)
@@ -25,6 +26,7 @@ namespace Player.States
             yield return new WaitForSeconds(4);
 
             GameManager.Instance.Respawn();
+            stateManager.TransitionToState(stateManager.FallState);
         }
     }
 }

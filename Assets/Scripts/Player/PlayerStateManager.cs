@@ -76,7 +76,7 @@ namespace Player
         private void Update()
         {
             if (Input.GetButtonDown("Respawn"))
-                GameManager.Instance.Respawn();
+                TransitionToState(hurtState);
             hangTimeCounter -= Time.deltaTime;
             jumpBufferCounter -= Time.deltaTime;
             GroundCheck();
@@ -100,7 +100,7 @@ namespace Player
                 hangTimeCounter = hangTime;
         }
 
-        public void ChangeGravity()
+        private void ChangeGravity()
         {
             if (Rigidbody2D.velocity.y < 0)
                 Rigidbody2D.gravityScale = fallGravity;
